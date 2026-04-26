@@ -1,0 +1,281 @@
+/* style.css — MULTIBURO */
+
+/* --- Reset --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f3ef;
+    color: #2c2c2c;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* --- Header --- */
+header {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 0 40px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 3px solid #c9b99a;
+}
+
+header .logo {
+    font-size: 1.4rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+header nav a {
+    color: #cccccc;
+    margin-left: 25px;
+    font-size: 0.9rem;
+}
+
+header nav a:hover,
+header nav a.actif {
+    color: #c9b99a;
+}
+
+/* --- Contenu principal --- */
+main {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* --- Hero (page d'accueil) --- */
+.hero {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 50px 40px;
+    margin-bottom: 30px;
+    border-bottom: 4px solid #c9b99a;
+}
+
+.hero h1 {
+    font-size: 2.2rem;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    color: #aaaaaa;
+    margin-bottom: 25px;
+}
+
+/* --- Boutons --- */
+.btn {
+    display: inline-block;
+    background-color: #c9b99a;
+    color: #1a1a1a;
+    padding: 10px 24px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #b8a589;
+}
+
+/* --- Cartes (accueil) --- */
+.cards {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    flex: 1;
+    background-color: #ffffff;
+    border: 1px solid #e0dbd2;
+    padding: 25px;
+}
+
+.card h3 {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #c9b99a;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 0.88rem;
+    color: #666666;
+    line-height: 1.6;
+}
+
+/* --- Titre de section --- */
+.section-titre {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 2px solid #c9b99a;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+}
+
+/* --- Filtres (formulaire) --- */
+.filtres {
+    background-color: #ffffff;
+    border: 1px solid #e0dbd2;
+    padding: 20px 25px;
+    margin-bottom: 25px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+}
+
+.champ {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+}
+
+.champ label {
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #555555;
+}
+
+.champ input[type="date"],
+.champ select {
+    padding: 9px 10px;
+    border: 1px solid #d0ccc4;
+    font-size: 0.92rem;
+    background-color: #fafaf8;
+    font-family: inherit;
+}
+
+/* --- Messages --- */
+.message {
+    background-color: #fff8ee;
+    border-left: 4px solid #c9b99a;
+    padding: 12px 18px;
+    font-size: 0.9rem;
+    color: #7a6a50;
+    margin-bottom: 20px;
+}
+
+.message.erreur {
+    background-color: #fff0f0;
+    border-left-color: #cc4444;
+    color: #993333;
+}
+
+.info-resultat {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* --- Tableau --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border: 1px solid #e0dbd2;
+}
+
+table thead {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+table thead th {
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+table tbody tr {
+    border-bottom: 1px solid #ede9e3;
+}
+
+table tbody tr:hover {
+    background-color: #faf8f5;
+}
+
+table tbody td {
+    padding: 11px 15px;
+    font-size: 0.9rem;
+}
+
+.btn-reserver {
+    display: inline-block;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.btn-reserver:hover {
+    background-color: #c9b99a;
+    color: #1a1a1a;
+}
+
+/* --- Récapitulatif (réservation) --- */
+.recap {
+    background-color: #f5f3ef;
+    border: 1px solid #e0dbd2;
+    padding: 20px 25px;
+    margin-bottom: 20px;
+    max-width: 500px;
+}
+
+.recap h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #7a6a50;
+    margin-bottom: 12px;
+}
+
+.recap .ligne {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0;
+    border-bottom: 1px solid #e0dbd2;
+    font-size: 0.9rem;
+}
+
+.recap .ligne:last-child {
+    border-bottom: none;
+}
+
+.recap .ligne span:first-child {
+    color: #888888;
+}
+
+.recap .ligne span:last-child {
+    font-weight: bold;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: #1a1a1a;
+    color: #888888;
+    text-align: center;
+    padding: 18px;
+    font-size: 0.8rem;
+    margin-top: 50px;
+}
