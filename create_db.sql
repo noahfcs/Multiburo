@@ -1,8 +1,8 @@
-CREATE DATABASE multiburo COLLATE 'utf8mb4_roman_ci';
-GRANT ALL PRIVILEGES ON multiburo.*TO 'fuchs'@'localhost';
+CREATE DATABASE multiburo COLLATE 'utf8mb4_general_ci';
+USE multiburo;
 
 -- Création de la table TYPE_RESSOURCE
-CREATE TABLE TYPE_RESSOURCE
+CREATE TABLE type_ressource
 (
     id INT,
     lib VARCHAR(50) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE TYPE_RESSOURCE
 );
 
 -- Création de la table UTILISATEUR
-CREATE TABLE UTILISATEUR
+CREATE TABLE utilisateur
 (
     id INT,
     nom VARCHAR(50) NOT NULL,
@@ -19,25 +19,30 @@ CREATE TABLE UTILISATEUR
 );
 
 -- Création de la table RESSOURCE
-CREATE TABLE RESSOURCE
+CREATE TABLE ressource
 (
     id INT,
     lib VARCHAR(50) NOT NULL,
     nb_place INT NOT NULL,
     id_type INT NOT NULL,
     CONSTRAINT pk_ressource PRIMARY KEY(id),
-    CONSTRAINT fk_ressource FOREIGN KEY(id_type) REFERENCES TYPE_RESSOURCE(id)
+    CONSTRAINT uq_ressource_lib UNIQUE(lib),
+    CONSTRAINT fk_ressource FOREIGN KEY(id_type) REFERENCES type_ressource(id)
 );
 
 -- Création de la table RESERVATION
-CREATE TABLE RESERVATION
+CREATE TABLE reservation
 (
     id_ress INT,
     id_util INT,
     date DATE,
     CONSTRAINT pk_reservation PRIMARY KEY(id_ress, id_util, date),
-    CONSTRAINT fk_reservation_R FOREIGN KEY(id_ress) REFERENCES RESSOURCE(id),
-    CONSTRAINT fk_reservation_U FOREIGN KEY(id_util) REFERENCES UTILISATEUR(id)
+    -- Une ressource ne peut être réservée qu'une fois par jour
+    CONSTRAINT uq_reservation_ress UNIQUE(id_ress, date),
+    -- Un utilisateur ne peut faire qu'une réservation par jour
+    CONSTRAINT uq_reservation_util UNIQUE(id_util, date),
+    CONSTRAINT fk_reservation_R FOREIGN KEY(id_ress) REFERENCES ressource(id),
+    CONSTRAINT fk_reservation_U FOREIGN KEY(id_util) REFERENCES utilisateur(id)
 );
 
 -- Jeu de données : types de ressource
@@ -109,3 +114,25 @@ INSERT INTO utilisateur (id, nom, prenom) VALUES
 (3, 'Bernard', 'Killian'),
 (4, 'Petit',   'Emeric'),
 (5, 'Leroy',   'Denis');
+
+
+-- Sécurisation : utilisateurs MySQL avec droits limités au strict nécessaire
+
+-- Utilisateur nominatif du programmeur de la base
+GRANT ALL PRIVILEGES ON multiburo.* TO 'fuchs'@'localhost';
+
+-- Utilisateur de l'application Front-Office (site web PHP)
+CREATE USER IF NOT EXISTS 'multiburo_front'@'localhost' IDENTIFIED BY 'Fr0nt-Multiburo!26';
+GRANT SELECT ON multiburo.utilisateur    TO 'multiburo_front'@'localhost';
+GRANT SELECT ON multiburo.type_ressource TO 'multiburo_front'@'localhost';
+GRANT SELECT ON multiburo.ressource      TO 'multiburo_front'@'localhost';
+GRANT SELECT, INSERT ON multiburo.reservation TO 'multiburo_front'@'localhost';
+
+-- Utilisateur de l'application Back-Office (C#)
+CREATE USER IF NOT EXISTS 'multiburo_back'@'localhost' IDENTIFIED BY 'B4ck-Multiburo!26';
+GRANT SELECT ON multiburo.utilisateur TO 'multiburo_back'@'localhost';
+GRANT SELECT ON multiburo.reservation TO 'multiburo_back'@'localhost';
+GRANT SELECT, INSERT, UPDATE, DELETE ON multiburo.ressource      TO 'multiburo_back'@'localhost';
+GRANT SELECT, INSERT, UPDATE, DELETE ON multiburo.type_ressource TO 'multiburo_back'@'localhost';
+
+FLUSH PRIVILEGES;

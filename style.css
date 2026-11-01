@@ -279,3 +279,13 @@ footer {
     font-size: 0.8rem;
     margin-top: 50px;
 }
+
+.table-types {
+    margin-bottom: 25px;
+}
+
+.message.succes {
+    background-color: #f0fff2;
+    border-left-color: #44aa55;
+    color: #2f7a3a;
+}

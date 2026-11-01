@@ -11,7 +11,7 @@
     <span class="logo">MULTIBURO</span>
     <nav>
         <a href="index.php" class="actif">Accueil</a>
-        <a href="ressources.php">Disponibiliter</a>
+        <a href="ressources.php">Disponibilités</a>
     </nav>
 </header>
 
@@ -45,7 +45,7 @@
 </main>
 
 <footer>
-    &copy; 2026 MULTIBURO — Lyon 3
+    2026 MULTIBURO — Lyon 3
 </footer>
 
 </body>
