@@ -128,11 +128,4 @@ GRANT SELECT ON multiburo.type_ressource TO 'multiburo_front'@'localhost';
 GRANT SELECT ON multiburo.ressource      TO 'multiburo_front'@'localhost';
 GRANT SELECT, INSERT ON multiburo.reservation TO 'multiburo_front'@'localhost';
 
--- Utilisateur de l'application Back-Office (C#)
-CREATE USER IF NOT EXISTS 'multiburo_back'@'localhost' IDENTIFIED BY 'B4ck-Multiburo!26';
-GRANT SELECT ON multiburo.utilisateur TO 'multiburo_back'@'localhost';
-GRANT SELECT ON multiburo.reservation TO 'multiburo_back'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON multiburo.ressource      TO 'multiburo_back'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON multiburo.type_ressource TO 'multiburo_back'@'localhost';
-
 FLUSH PRIVILEGES;
